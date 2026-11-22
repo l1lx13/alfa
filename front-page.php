@@ -147,6 +147,34 @@ $services = array(
 
 <?php get_template_part( 'template-parts/reviews' ); ?>
 
+<section class="mobile-related" aria-label="Другие наши кейсы">
+	<div class="container">
+		<h2 class="h2 mobile-related__title">#Другие наши кейсы, которые могут вас заинтересовать</h2>
+		<div class="mobile-related__grid">
+			<?php
+			$mobile_cases = new WP_Query( array( 'post_type' => 'alfa_case', 'posts_per_page' => 2, 'orderby' => 'menu_order date', 'order' => 'DESC' ) );
+			if ( $mobile_cases->have_posts() ) :
+				while ( $mobile_cases->have_posts() ) :
+					$mobile_cases->the_post();
+					$mobile_cover = get_the_post_thumbnail_url( get_the_ID(), 'large' );
+					?>
+					<article class="mobile-related__card">
+						<a class="mobile-related__media" href="<?php the_permalink(); ?>">
+							<?php if ( $mobile_cover ) : ?><img src="<?php echo esc_url( $mobile_cover ); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy"><?php endif; ?>
+						</a>
+						<h3><?php the_title(); ?></h3>
+						<a class="mobile-related__link" href="<?php the_permalink(); ?>">Подробнее о кейсе</a>
+					</article>
+					<?php
+				endwhile;
+				wp_reset_postdata();
+			endif;
+			?>
+		</div>
+		<a class="btn btn--primary mobile-related__all" href="<?php echo esc_url( home_url( '/keysy/' ) ); ?>">Все кейсы</a>
+	</div>
+</section>
+
 <?php get_template_part( 'template-parts/top3' ); ?>
 
 <section class="services" id="services">

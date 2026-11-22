@@ -148,4 +148,4 @@ $socials = array(
 	</div>
 </header>
 
-<main id="main" class="site-main">
+<main id="main" class="site-main<?php echo is_front_page() ? ' site-main--home' : ''; ?>">
