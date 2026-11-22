@@ -4096,6 +4096,7 @@ fieldset {
   .site-main--home > .stats { order: 2; }
   .site-main--home > .cases { order: 3; }
   .site-main--home > .meetings { order: 4; }
+  .site-main--home > .meetings { display: none; }
   .site-main--home > .coop { order: 5; }
   .site-main--home > .services { order: 6; }
   .site-main--home > .reviews { order: 7; }
