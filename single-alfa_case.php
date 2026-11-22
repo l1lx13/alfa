@@ -95,17 +95,21 @@ endwhile;
 </section>
 
 <?php
+$related_page = isset( $_GET['related_page'] ) ? max( 1, absint( $_GET['related_page'] ) ) : 1;
 $related = new WP_Query(
 	array(
 		'post_type'      => 'alfa_case',
-		'posts_per_page' => 3,
+		'posts_per_page' => 2,
+		'paged'          => $related_page,
 		'post__not_in'   => array( get_the_ID() ),
+		'orderby'        => 'date',
+		'order'          => 'DESC',
 	)
 );
 
 if ( $related->have_posts() ) :
 	?>
-	<section class="related-cases">
+	<section class="related-cases" id="related-cases">
 		<div class="container">
 			<h2 class="h2 related-cases__title">Другие наши кейсы</h2>
 			<div class="cases__grid cases__grid--three">
