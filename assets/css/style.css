@@ -5748,7 +5748,11 @@ fieldset {
 	}
 
 	.coop__sign-line {
-		display: none;
+		display: block;
+		width: 2px;
+		min-height: 34px;
+		align-self: stretch;
+		margin: 0;
 	}
 
 	.coop__text {
