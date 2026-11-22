@@ -7491,6 +7491,7 @@ body {
   }
   .footer-brand__top { display: contents !important; }
   .footer-brand__top .logo {
+    order: 1;
     position: static !important;
     display: flex !important;
     align-items: center;
@@ -7544,6 +7545,7 @@ body {
     color: #fff;
   }
   .footer-brand__lead {
+    order: 4;
     display: block;
     max-width: 320px;
     margin: 10px 0 0 !important;
@@ -7554,6 +7556,7 @@ body {
     color: #fff;
   }
   .footer-contacts {
+    order: 5;
     display: flex !important;
     align-items: center;
     gap: 20px;
@@ -7570,6 +7573,7 @@ body {
     line-height: 1.35;
   }
   .footer-brand__actions {
+    order: 6;
     display: flex !important;
     flex-direction: column;
     align-items: flex-start;
