@@ -7,6 +7,7 @@
 
 $icons = get_stylesheet_directory_uri() . '/assets/icons';
 $share = array(
+	'vk'        => 'VKontakte',
 	'facebook'  => 'Facebook',
 	'instagram' => 'Instagram',
 	'whatsapp'  => 'Whatsapp',
@@ -25,7 +26,11 @@ $share = array(
 			<?php foreach ( $share as $network => $label ) : ?>
 				<li class="repost__item">
 					<a class="share-link share-link--<?php echo esc_attr( $network ); ?>" href="#" data-share="<?php echo esc_attr( $network ); ?>">
-						<img class="share-link__icon" src="<?php echo esc_url( $icons . '/social-' . $network . '.svg' ); ?>" alt="" width="52" height="52" loading="lazy">
+						<?php if ( 'vk' === $network ) : ?>
+							<span class="share-link__vk" aria-hidden="true">ᴠκ</span>
+						<?php else : ?>
+							<img class="share-link__icon" src="<?php echo esc_url( $icons . '/social-' . $network . '.svg' ); ?>" alt="" width="52" height="52" loading="lazy">
+						<?php endif; ?>
 						<span><?php echo esc_html( $label ); ?></span>
 					</a>
 				</li>
