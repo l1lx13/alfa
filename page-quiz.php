@@ -50,8 +50,8 @@ get_header();
 					<?php
 					$cards = array(
 						array( 'value' => 'Заявки', 'label' => 'Заявки каждый день', 'image' => 'f-2018-8635.png' ),
-						array( 'value' => 'Бренд', 'label' => 'Узнаваемость бренда', 'image' => 'f-2018-8639.png' ),
-						array( 'value' => 'Продажи', 'label' => 'Рост продаж', 'image' => 'f-2018-8641.png' ),
+						array( 'value' => 'Бренд', 'label' => 'Узнаваемость бренда', 'image' => 'f-2018-8658.png' ),
+						array( 'value' => 'Продажи', 'label' => 'Рост продаж', 'image' => 'case-cover.png' ),
 					);
 					foreach ( $cards as $card ) :
 						?>

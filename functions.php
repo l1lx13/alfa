@@ -231,6 +231,37 @@ function alfa_handle_lead() {
 
 	wp_send_json_success( array( 'message' => 'Спасибо! Роман свяжется с вами в ближайшее время.' ) );
 }
+
+/**
+ * AJAX: подгрузка сетки кейсов (фильтр по отрасли + пагинация) без перезагрузки.
+ */
+function alfa_ajax_cases() {
+	$tag  = isset( $_GET['tag'] ) ? sanitize_text_field( wp_unslash( $_GET['tag'] ) ) : '';
+	$page = isset( $_GET['page'] ) ? max( 1, (int) $_GET['page'] ) : 1;
+
+	ob_start();
+	get_template_part(
+		'template-parts/cases-grid',
+		null,
+		array(
+			'tag'        => $tag,
+			'page'       => $page,
+			'pagination' => true,
+		)
+	);
+	$html = ob_get_clean();
+
+	wp_send_json_success(
+		array(
+			'html' => $html,
+			'tag'  => $tag,
+			'page' => $page,
+		)
+	);
+}
+add_action( 'wp_ajax_alfa_cases', 'alfa_ajax_cases' );
+add_action( 'wp_ajax_nopriv_alfa_cases', 'alfa_ajax_cases' );
+
 add_action( 'wp_ajax_alfa_lead', 'alfa_handle_lead' );
 add_action( 'wp_ajax_nopriv_alfa_lead', 'alfa_handle_lead' );
 

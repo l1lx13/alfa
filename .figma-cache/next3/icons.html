@@ -1,0 +1,22 @@
+<!doctype html><meta charset="utf-8">
+<style>
+body{margin:0;background:#3f424a;display:flex;gap:20px;padding:10px}
+i{display:block;width:52px;height:52px;background:#fff}
+</style>
+<svg width="0" height="0" style="position:absolute"><use href="../../assets/icons/sprite.svg#i-facebook"/></svg>
+<img src="../../assets/icons/sprite.svg" width="0" height="0" alt="">
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg"></svg>
+<script>
+const names=['facebook','instagram','whatsapp','viber','telegram'];
+const host=document.body;
+fetch('../../assets/icons/sprite.svg').then(r=>r.text()).then(t=>{
+  const d=new DOMParser().parseFromString(t,'image/svg+xml');
+  d.querySelectorAll('symbol').forEach(s=>document.body.appendChild(s.cloneNode(true)));
+  names.forEach(n=>{
+    const p=document.createElement('p');
+    p.innerHTML='<svg width="52" height="52" viewBox="'+d.querySelector('#i-'+n).getAttribute('viewBox')+'"><use href="#i-'+n+'" fill="#fff"/></svg>';
+    document.body.appendChild(p);
+  });
+  document.title='ok';
+});
+</script>

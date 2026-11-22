@@ -4,36 +4,38 @@
  *
  * @package alfa
  */
+
+$icons = get_stylesheet_directory_uri() . '/assets/icons';
+$share = array(
+	'facebook'  => 'Facebook',
+	'instagram' => 'Instagram',
+	'whatsapp'  => 'Whatsapp',
+	'viber'     => 'Viber',
+	'telegram'  => 'Telegram',
+);
 ?>
 <section class="repost">
 	<div class="container">
-		<div class="repost__bar">
+		<div class="repost__head">
+			<img class="repost__share" src="<?php echo esc_url( $icons . '/share.svg' ); ?>" alt="" width="36" height="36">
 			<h2 class="h2 repost__title"><?php echo esc_html( alfa_field( 'repost_title', 'Сохрани себе статью, чтобы не потерять, в 1 клик', 'option' ) ); ?></h2>
-			<ul class="repost__list">
-				<?php
-				$share = array(
-					'facebook'  => 'Facebook',
-					'instagram' => 'Instagram',
-					'whatsapp'  => 'Whatsapp',
-					'viber'     => 'Viber',
-					'telegram'  => 'Telegram',
-				);
-				foreach ( $share as $icon => $label ) :
-					?>
-					<li>
-						<a class="share-link share-link--<?php echo esc_attr( $icon ); ?>" href="#" data-share="<?php echo esc_attr( $icon ); ?>">
-							<span class="share-link__icon"><?php echo alfa_icon( $icon ); ?></span>
-							<span><?php echo esc_html( $label ); ?></span>
-						</a>
-					</li>
-				<?php endforeach; ?>
-				<li>
-					<button class="share-link share-link--copy btn btn--ghost btn--sm" type="button" data-copy-link>
-						<span class="share-link__icon"><?php echo alfa_icon( 'clip' ); ?></span>
-						<span>Скопировать ссылку</span>
-					</button>
-				</li>
-			</ul>
 		</div>
+
+		<ul class="repost__list">
+			<?php foreach ( $share as $network => $label ) : ?>
+				<li class="repost__item">
+					<a class="share-link share-link--<?php echo esc_attr( $network ); ?>" href="#" data-share="<?php echo esc_attr( $network ); ?>">
+						<img class="share-link__icon" src="<?php echo esc_url( $icons . '/social-' . $network . '.svg' ); ?>" alt="" width="52" height="52" loading="lazy">
+						<span><?php echo esc_html( $label ); ?></span>
+					</a>
+				</li>
+			<?php endforeach; ?>
+			<li class="repost__item">
+				<button class="share-link share-link--copy" type="button" data-copy-link>
+					<span>Скопировать ссылку</span>
+					<img class="share-link__copy-icon" src="<?php echo esc_url( $icons . '/copy-link.svg' ); ?>" alt="" width="18" height="8" loading="lazy">
+				</button>
+			</li>
+		</ul>
 	</div>
 </section>

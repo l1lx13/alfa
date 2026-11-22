@@ -381,7 +381,7 @@ function alfa_acf_fields() {
 		array( 'key' => 'field_alfa_blk_coop_img', 'name' => 'coop_image', 'label' => 'Фото', 'type' => 'image', 'return_format' => 'url' ),
 
 		array( 'key' => 'field_alfa_blk_tab2', 'label' => 'Блок «ТОП-3»', 'type' => 'tab' ),
-		array( 'key' => 'field_alfa_blk_top3_title', 'name' => 'top3_title', 'label' => 'Заголовок', 'type' => 'text', 'default_value' => '🤪 #Ниже смотрите ТОП-3 выдающихся результата' ),
+		array( 'key' => 'field_alfa_blk_top3_title', 'name' => 'top3_title', 'label' => 'Заголовок', 'type' => 'text', 'default_value' => '🤪 #Ниже смотрите ТОП - 3 выдающихся результата' ),
 		array( 'key' => 'field_alfa_blk_top3_lead', 'name' => 'top3_lead', 'label' => 'Подзаголовок', 'type' => 'textarea', 'rows' => 2, 'default_value' => 'Это лучшие кейсы наших клиентов: что именно сделала команда, чтобы прийти к таким цифрам, и какой результат это принесло в деньгах.' ),
 		array( 'key' => 'field_alfa_blk_t3_1', 'name' => 'top3_1_title', 'label' => 'Результат 1 — заголовок', 'type' => 'text', 'default_value' => '72 млн ₽ всего за первые 7 дней рекламы' ),
 		array( 'key' => 'field_alfa_blk_t3_2', 'name' => 'top3_2_title', 'label' => 'Результат 2 — заголовок', 'type' => 'text', 'default_value' => 'Более 1000 заявок на строительство' ),

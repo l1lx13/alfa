@@ -41,44 +41,80 @@
 		});
 	}
 
-	/* ---------------- Tabs ---------------- */
-	$$('[data-tabs]').forEach((tabs) => {
-		const items = $$('.tabs__item', tabs);
-		items.forEach((item) => {
-			item.addEventListener('click', () => {
-				items.forEach((i) => {
-					i.classList.remove('is-active');
-					i.setAttribute('aria-pressed', 'false');
-				});
-				item.classList.add('is-active');
-				item.setAttribute('aria-pressed', 'true');
+	/* ---------------- Кейсы: фильтр и пагинация без перезагрузки ---------------- */
+	const applyCases = (section, html, tag, page) => {
+		const tmp = document.createElement('div');
+		tmp.innerHTML = html;
 
-				const filter = item.dataset.filter;
-				if (!filter) return;
+		const freshGrid = tmp.querySelector('.cases__grid');
+		const freshPag = tmp.querySelector('.pagination');
+		const grid = section.querySelector('.cases__grid');
+		const pag = section.querySelector('.pagination');
 
-				const section = item.closest('section') || document;
+		if (!freshGrid || !grid) return;
 
-				const cards = $$('.case-card[data-tag]', section);
-				if (cards.length) {
-					const map = {
-						stroy: 'Строительство',
-						remont: 'Ремонт',
-						mebel: 'Мебель',
-						kino: 'Кинологические',
-						odezhda: 'Одежда',
-					};
-					cards.forEach((card) => {
-						const tag = card.dataset.tag || '';
-						card.hidden = !(filter === 'all' || tag.indexOf(map[filter] || '\u0000') !== -1);
-					});
-					return;
-				}
+		grid.replaceWith(freshGrid);
 
-				$$('.service-row[data-cat]', section).forEach((row) => {
-					row.hidden = !(filter === 'all' || row.dataset.cat === filter);
-				});
-			});
+		if (pag && freshPag) {
+			pag.replaceWith(freshPag);
+		} else if (pag && !freshPag) {
+			pag.remove();
+		} else if (!pag && freshPag) {
+			freshGrid.insertAdjacentElement('afterend', freshPag);
+		}
+
+		section.dataset.tag = tag || '';
+		section.dataset.page = page || 1;
+
+		section.querySelectorAll('.tabs__item').forEach((item) => {
+			const active = (item.dataset.tag || '') === (tag || '');
+			item.classList.toggle('is-active', active);
+			if (active) {
+				item.setAttribute('aria-current', 'true');
+			} else {
+				item.removeAttribute('aria-current');
+			}
 		});
+	};
+
+	const loadCases = (tag, page) => {
+		const section = document.querySelector('[data-cases]');
+		if (!section || section.dataset.busy === '1') return;
+
+		section.dataset.busy = '1';
+		section.classList.add('is-loading');
+
+		const url = `${alfaData.ajaxUrl}?action=alfa_cases&tag=${encodeURIComponent(tag || '')}&page=${page || 1}`;
+
+		fetch(url, { credentials: 'same-origin' })
+			.then((r) => r.json())
+			.then((res) => {
+				if (!res || !res.success || !res.data || !res.data.html) return;
+				applyCases(section, res.data.html, tag, page);
+			})
+			.catch(() => {})
+			.finally(() => {
+				section.dataset.busy = '0';
+				section.classList.remove('is-loading');
+			});
+	};
+
+	document.addEventListener('click', (e) => {
+		const section = e.target.closest('[data-cases]');
+		if (!section) return;
+
+		const tab = e.target.closest('.tabs__item');
+		if (tab) {
+			e.preventDefault();
+			loadCases(tab.dataset.tag || '', 1);
+			return;
+		}
+
+		const pageLink = e.target.closest('.pagination a[data-page]');
+		if (pageLink) {
+			e.preventDefault();
+			loadCases(section.dataset.tag || '', parseInt(pageLink.dataset.page, 10) || 1);
+		}
 	});
 
 	/* ---------------- Slider ---------------- */
@@ -406,5 +442,76 @@
 			const top = target.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0);
 			window.scrollTo({ top, behavior: 'smooth' });
 		});
+	});
+})();
+
+/* ---------------- Мега-меню «Услуги» ---------------- */
+(function () {
+	const mega = document.getElementById('mega');
+	if (!mega) return;
+
+	const navbar = mega.closest('.navbar');
+	const trigger = navbar && navbar.querySelector('.nav__list a[href*="/uslugi"]');
+	if (!trigger) return;
+
+	const backdrop = document.createElement('div');
+	backdrop.className = 'mega-backdrop';
+	backdrop.hidden = true;
+	document.body.appendChild(backdrop);
+
+	const isDesktop = () => window.matchMedia('(min-width: 1025px)').matches;
+
+	const close = () => {
+		mega.hidden = true;
+		backdrop.hidden = true;
+		trigger.classList.remove('is-mega-open');
+		trigger.setAttribute('aria-expanded', 'false');
+	};
+
+	const positionBackdrop = () => {
+		const navRect = navbar.getBoundingClientRect();
+		backdrop.style.top = Math.max(0, navRect.bottom) + 'px';
+	};
+
+	const open = () => {
+		mega.hidden = false;
+		backdrop.hidden = false;
+		positionBackdrop();
+		trigger.classList.add('is-mega-open');
+		trigger.setAttribute('aria-expanded', 'true');
+	};
+
+	trigger.setAttribute('aria-expanded', 'false');
+	trigger.setAttribute('aria-controls', 'mega');
+
+	trigger.addEventListener('click', (e) => {
+		if (!isDesktop()) return;
+		e.preventDefault();
+		mega.hidden ? open() : close();
+	});
+
+	backdrop.addEventListener('click', close);
+
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && !mega.hidden) close();
+	});
+
+	document.addEventListener('click', (e) => {
+		if (mega.hidden) return;
+		if (mega.contains(e.target) || trigger.contains(e.target)) return;
+		close();
+	});
+
+	window.addEventListener('resize', () => {
+		if (!isDesktop()) close();
+		if (!mega.hidden) positionBackdrop();
+	});
+
+	window.addEventListener('scroll', () => {
+		if (!mega.hidden) positionBackdrop();
+	}, { passive: true });
+
+	mega.addEventListener('click', (e) => {
+		if (e.target.closest('a')) close();
 	});
 })();

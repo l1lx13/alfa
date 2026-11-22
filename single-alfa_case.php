@@ -81,7 +81,7 @@ endwhile;
 				?>
 				<article class="promo-card">
 					<button class="promo-card__media" type="button" data-video-open aria-label="Смотреть: <?php echo esc_attr( $item['title'] ); ?>">
-						<img src="<?php echo esc_url( alfa_image( $item['image'], 'f-2018-8639.png' ) ); ?>" alt="" loading="lazy">
+						<img src="<?php echo esc_url( alfa_image( $item['image'], 'f-2018-8658.png' ) ); ?>" alt="" loading="lazy">
 						<span class="review-card__play"><?php echo alfa_icon( 'play' ); ?></span>
 					</button>
 					<h3 class="promo-card__title"><?php echo esc_html( $item['title'] ); ?></h3>

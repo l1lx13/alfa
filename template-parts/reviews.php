@@ -14,11 +14,13 @@ $query = new WP_Query(
 	)
 );
 
-$fallback_poster = alfa_image( 'f-2018-9024.png' );
+$fallback_poster = 'review-poster.png';
 ?>
 <section class="reviews" id="reviews">
 	<div class="container">
-		<h2 class="h2 reviews__title"><span class="accent">Видео-отзывы</span> от наших довольных клиентов</h2>
+		<h2 class="h2 reviews__title">
+			<span class="accent">Видео-отзывы</span> от наших довольных клиентов
+		</h2>
 	</div>
 
 	<div class="reviews__slider" data-slider>
@@ -27,26 +29,38 @@ $fallback_poster = alfa_image( 'f-2018-9024.png' );
 			if ( $query->have_posts() ) :
 				while ( $query->have_posts() ) :
 					$query->the_post();
+
 					$poster = alfa_field( 'review_poster', '', 'post', get_the_ID() );
 					if ( is_array( $poster ) && isset( $poster['url'] ) ) {
 						$poster = $poster['url'];
 					}
 					if ( ! $poster ) {
-						$poster = $fallback_poster;
+						$poster = alfa_image( $fallback_poster );
 					} elseif ( 0 !== strpos( $poster, 'http' ) ) {
-						$poster = alfa_image( $poster, 'f-2018-9024.png' );
+						$poster = alfa_image( $poster, $fallback_poster );
+					}
+
+					$title = alfa_field( 'review_title', 'Натяжные потолки', 'post', get_the_ID() );
+					$name  = alfa_field( 'review_name', '', 'post', get_the_ID() );
+
+					$label = $title;
+					if ( $name ) {
+						$label .= ', ' . $name;
 					}
 					?>
 					<article class="review-card">
-						<button class="review-card__media" type="button" data-video-open aria-label="<?php the_title_attribute(); ?>">
-							<img src="<?php echo esc_url( $poster ); ?>" alt="" loading="lazy">
-							<span class="review-card__chip"><?php echo esc_html( alfa_field( 'review_title', 'Натяжные потолки', 'post', get_the_ID() ) ); ?></span>
-							<span class="review-card__overlay">
-								<span class="review-card__big"><?php echo esc_html( alfa_field( 'review_title', 'Натяжные потолки', 'post', get_the_ID() ) ); ?></span>
-								<span class="review-card__sub"><?php echo esc_html( alfa_field( 'review_sub', 'Таргетированная реклама', 'post', get_the_ID() ) ); ?></span>
+						<button class="review-card__trigger" type="button" data-video-open aria-label="Смотреть видео-отзыв: <?php echo esc_attr( $label ); ?>">
+							<img class="review-card__poster" src="<?php echo esc_url( $poster ); ?>" alt="" width="636" height="398" loading="lazy">
+
+							<?php if ( $title ) : ?>
+								<span class="review-card__badge"><?php echo esc_html( $title ); ?></span>
+							<?php endif; ?>
+
+							<span class="review-card__play" aria-hidden="true">
+								<svg width="52" height="60" viewBox="0 0 52.205 60.28" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M52.205 30.14L0 60.28L0 0L52.205 30.14Z" fill="white"/>
+								</svg>
 							</span>
-							<span class="review-card__play"><?php echo alfa_icon( 'play' ); ?></span>
-							<span class="review-card__watermark"><?php echo esc_html( alfa_field( 'review_name', '', 'post', get_the_ID() ) ); ?></span>
 						</button>
 					</article>
 					<?php
@@ -56,8 +70,8 @@ $fallback_poster = alfa_image( 'f-2018-9024.png' );
 			?>
 		</div>
 
-		<button class="reviews__arrow reviews__arrow--prev" type="button" data-slider-prev aria-label="Предыдущий отзыв">&#8249;</button>
-		<button class="reviews__arrow reviews__arrow--next" type="button" data-slider-next aria-label="Следующий отзыв">&#8250;</button>
+		<button class="reviews__arrow reviews__arrow--prev" type="button" data-slider-prev aria-label="Предыдущий отзыв"></button>
+		<button class="reviews__arrow reviews__arrow--next" type="button" data-slider-next aria-label="Следующий отзыв"></button>
 	</div>
 
 	<div class="container">

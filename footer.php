@@ -10,8 +10,8 @@ $phone     = alfa_field( 'header_phone', '+375 (44) 731-25-64', 'option' );
 $phone_two = alfa_field( 'footer_phone_two', '+375 (29) 915 87 66', 'option' );
 $subscribe = alfa_field( 'footer_subscribe', 'и получите чек-лист для привлечения клиентов БЕСПЛАТНО', 'option' );
 $privacy   = alfa_field( 'footer_privacy', '', 'option' );
-$qr        = alfa_field( 'footer_qr', alfa_image( 'f-I2018-8765-609-15952.png' ), 'option' );
-$pay_one   = alfa_field( 'footer_payments', alfa_image( 'f-I2018-8765-609-15954.png' ), 'option' );
+$qr        = alfa_field( 'footer_qr', alfa_image( 'footer-qr.png' ), 'option' );
+$pay_one   = alfa_field( 'footer_payments', alfa_image( 'payment-mtbank.png' ), 'option' );
 
 $socials = array(
 	'youtube'   => alfa_field( 'header_social_youtube', 'https://www.youtube.com/', 'option' ),
@@ -58,11 +58,13 @@ $footer_nav = array(
 				<span class="footer-brand__line" aria-hidden="true"></span>
 
 				<p class="footer-brand__lead"><?php echo esc_html( $lead ); ?></p>
-<?php echo alfa_icon( 'phone', 'footer-phones__icon' ); ?>
-				<ul class="footer-phones">
+<div class="footer-contacts">
+					<?php echo alfa_icon( 'phone', 'footer-phones__icon' ); ?>
+					<ul class="footer-phones">
 					<li><a href="tel:<?php echo esc_attr( preg_replace( '/\D+/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></li>
-					<li><a href="tel:<?php echo esc_attr( preg_replace( '/\D+/', '', $phone_two ) ); ?>"><?php echo esc_html( $phone_two ); ?></a></li>
-				</ul>
+						<li><a href="tel:<?php echo esc_attr( preg_replace( '/\D+/', '', $phone_two ) ); ?>"><?php echo esc_html( $phone_two ); ?></a></li>
+					</ul>
+				</div>
 
 				<div class="footer-brand__actions">
 					<a class="btn btn--ghost btn--sm" href="#callback">написать маркетологу</a>
@@ -124,7 +126,7 @@ $footer_nav = array(
 		<div class="container footer-bottom__inner">
 			<div class="footer-payments">
 				<img src="<?php echo esc_url( $pay_one ); ?>" alt="Способы оплаты" loading="lazy">
-				<img src="<?php echo esc_url( alfa_image( 'f-I2018-8765-609-15955.png' ) ); ?>" alt="Платёжные системы" loading="lazy">
+				<img src="<?php echo esc_url( alfa_image( 'payment-systems.png' ) ); ?>" alt="Платёжные системы" loading="lazy">
 			</div>
 
 			<a class="footer-privacy" href="<?php echo esc_url( $privacy ? $privacy : '#' ); ?>">Политика конфиденциальности</a>

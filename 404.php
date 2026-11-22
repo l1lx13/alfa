@@ -19,7 +19,7 @@ get_header();
 		</div>
 
 		<figure class="oops__media">
-			<img src="<?php echo esc_url( alfa_field( 'e404_image', alfa_image( 'page-404.webp' ), 'option' ) ); ?>" alt="" loading="lazy">
+			<img src="<?php echo esc_url( alfa_field( 'e404_image', alfa_image( 'page-status.webp' ), 'option' ) ); ?>" alt="" loading="lazy">
 		</figure>
 	</div>
 </section>

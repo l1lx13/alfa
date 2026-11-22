@@ -20,7 +20,7 @@ $meetings = array(
 	</div>
 
 	<div class="meetings__slider" data-slider>
-		<button class="meetings__arrow meetings__arrow--prev" type="button" data-slider-prev aria-label="Назад">&#8249;</button>
+		<button class="meetings__arrow meetings__arrow--prev" type="button" data-slider-prev aria-label="Назад"></button>
 		<div class="meetings__strip" data-slider-track>
 		<?php
 		$meetings = array(
@@ -28,6 +28,10 @@ $meetings = array(
 			array( 'image' => 'f-2018-9034.png', 'alt' => 'Встреча с клиентом на строительном объекте' ),
 			array( 'image' => 'f-2018-9035.png', 'fallback' => 'f-2018-9023.png', 'alt' => 'Осмотр объекта, пришедшего с рекламы' ),
 			array( 'image' => 'f-2018-9036.png', 'fallback' => 'f-2018-9024.png', 'alt' => 'Команда Alfa Digital Agency на выезде' ),
+			array( 'image' => 'f-2018-9023.png', 'alt' => 'Съёмка объекта на этапе каркаса' ),
+			array( 'image' => 'f-2018-9024.png', 'alt' => 'Собственник агентства на объекте клиента' ),
+			array( 'image' => 'f-2020-9608.png', 'alt' => 'Встреча с клиентом на производстве' ),
+			array( 'image' => 'f-2020-9619.png', 'alt' => 'Выезд команды на площадку клиента' ),
 		);
 		foreach ( $meetings as $meeting ) :
 			?>
@@ -36,7 +40,7 @@ $meetings = array(
 			</figure>
 		<?php endforeach; ?>
 		</div>
-		<button class="meetings__arrow meetings__arrow--next" type="button" data-slider-next aria-label="Вперёд">&#8250;</button>
+		<button class="meetings__arrow meetings__arrow--next" type="button" data-slider-next aria-label="Вперёд"></button>
 	</div>
 
 	<div class="container meetings__foot">

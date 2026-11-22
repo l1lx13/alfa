@@ -16,12 +16,12 @@ $cases = array(
 		'tag'   => 'Строительство',
 	),
 	array(
-		'image' => 'f-2018-8639.png',
+		'image' => 'f-2018-8658.png',
 		'title' => 'Сайт каталог для PL Stroy',
 		'tag'   => 'Ремонт',
 	),
 	array(
-		'image' => 'f-2018-8641.png',
+		'image' => 'case-cover.png',
 		'title' => 'Сайт каталог для PL Stroy',
 		'tag'   => 'Мебель',
 	),
@@ -61,7 +61,7 @@ $services = array(
 		'text'  => 'это лучших программ и инструментов для совместной работы над дизайном. Эта статья — путеводитель по самым удобным платформам для совместной работы над дизайном.',
 	),
 	array(
-		'image' => 'f-2020-9630.png',
+		'image' => 'f-2020-9619.png',
 		'title' => '10 лучших программ и инструментов для совместной работы',
 		'text'  => 'это лучших программ и инструментов для совместной работы над дизайном. Эта статья — путеводитель по самым удобным платформам для совместной работы над дизайном.',
 	),
@@ -70,7 +70,7 @@ $services = array(
 
 <section class="hero">
 	<div class="hero__bg" aria-hidden="true">
-		<img src="<?php echo esc_url( alfa_image( 'f-2018-8598.png' ) ); ?>" alt="" width="2010" height="624">
+		<img src="<?php echo esc_url( alfa_image( 'hero-bg.png' ) ); ?>" alt="" width="2010" height="624">
 	</div>
 
 	<div class="container hero__inner">
@@ -116,7 +116,7 @@ $services = array(
 			<blockquote class="stats__quote">
 				<?php
 				echo wp_kses(
-					alfa_field( 'stats_quote', '💼 «Директор <b>несёт ответственность за результат</b> каждого проекта. Руководил отделами продаж, с которых SALES более > 2 🍋 USD»' ),
+					alfa_field( 'stats_quote', '💼 «Директор несёт <b>ответственность за результат</b> каждого проекта. Руководил отделами продаж, с которых SALES более > 2 🍋 USD»' ),
 					array( 'b' => array(), 'strong' => array(), 'br' => array(), 'span' => array( 'class' => array() ) )
 				);
 				?>
@@ -131,6 +131,19 @@ $services = array(
 		<div class="stats__photos">
 			<figure class="stats__photo stats__photo--2">
 				<img src="<?php echo esc_url( alfa_image( 'f-2018-9024.png' ) ); ?>" alt="Команда Alfa Digital Agency" width="433" height="354" loading="lazy">
+				<button class="stats__play" type="button" data-video-open aria-label="Смотреть видео о нас">
+					<svg class="stats__play-icon" viewBox="0 0 380 380" aria-hidden="true" focusable="false">
+						<circle cx="190" cy="190" r="190" fill="none" stroke="#26CBFF1A" stroke-width="1"/>
+						<circle cx="190" cy="190" r="145" fill="none" stroke="#26CBFF4D" stroke-width="1"/>
+						<circle cx="190" cy="190" r="105" fill="none" stroke="#26CBFF" stroke-width="1.2" opacity="0.9"/>
+						<circle cx="190" cy="190" r="72" fill="#4F7A88"/>
+						<path d="M 175 175 L 205 190 L 175 205 Z" fill="white"/>
+					</svg>
+				</button>
+				<figcaption class="stats__caption">
+					<span class="stats__caption-name">Дмитрий</span>
+					<span class="stats__caption-role">Инженер PL Stroy</span>
+				</figcaption>
 			</figure>
 			<figure class="stats__photo stats__photo--1">
 				<img src="<?php echo esc_url( alfa_image( 'f-2018-9023.png' ) ); ?>" alt="Роман Пожарицкий на встрече" width="376" height="354" loading="lazy">
@@ -153,7 +166,7 @@ $services = array(
 	<div class="container services__head">
 		<h2 class="h2 services__title"><span class="accent">Услуги</span> которые мы оказываем начиная с <span class="accent">2018 года</span></h2>
 		<p class="services__lead"><?php echo esc_html( alfa_field( 'services_lead', 'Список услуг, которые помогли нашим клиентам заработать более 2 млн USD начиная с 2016 года' ) ); ?></p>
-
+	</div>
 		<div class="tabs tabs--services" data-tabs>
 			<div class="tabs__list" role="tablist" aria-label="Категории услуг">
 				<button class="tabs__item is-active" role="tab" aria-selected="true">По отраслям</button>
@@ -162,8 +175,6 @@ $services = array(
 				<button class="tabs__item" role="tab" aria-selected="false">Разработка</button>
 			</div>
 		</div>
-	</div>
-
 	<div class="services__rows">
 		<?php foreach ( $services as $service ) : ?>
 			<article class="service-row">

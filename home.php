@@ -32,7 +32,7 @@ $img = get_stylesheet_directory_uri() . '/assets/images';
 							<?php if ( has_post_thumbnail() ) : ?>
 								<?php the_post_thumbnail( 'large', array( 'loading' => 'lazy' ) ); ?>
 							<?php else : ?>
-								<img src="<?php echo esc_url( alfa_image( 'f-2018-8639.png' ) ); ?>" alt="" loading="lazy">
+								<img src="<?php echo esc_url( alfa_image( 'f-2018-8658.png' ) ); ?>" alt="" loading="lazy">
 							<?php endif; ?>
 						</a>
 						<div class="art-card__meta">
