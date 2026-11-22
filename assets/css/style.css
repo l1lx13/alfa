@@ -7496,26 +7496,33 @@ body {
     align-items: center;
     flex: none;
     width: 100% !important;
-    height: 26px !important;
-    min-height: 26px;
+    height: 28px !important;
+    min-height: 28px;
     margin: 0;
     padding: 0;
     overflow: visible;
   }
-  .footer-brand__top .logo svg { display: none !important; }
+  .footer-brand__top .logo svg {
+    display: block !important;
+    flex: 0 0 18px;
+    width: 18px !important;
+    height: 28px !important;
+    max-width: none;
+  }
   .footer-brand__top .logo::after {
     content: "Alfa Digital Agency — разработка высоко конверсионных сайтов";
     display: block;
     width: 100%;
     font-family: var(--font-main);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
-    line-height: 1.15;
+    line-height: 1.1;
     color: #fff;
     background: none;
     -webkit-text-fill-color: initial;
   }
   .footer-brand__line {
+    order: 2;
     display: block;
     flex: none;
     width: 100%;
@@ -7524,6 +7531,7 @@ body {
     background: #5daebe;
   }
   .footer-brand__title {
+    order: 3;
     display: block;
     flex: none;
     margin: 0 !important;
@@ -7538,7 +7546,7 @@ body {
   .footer-brand__lead {
     display: block;
     max-width: 320px;
-    margin: 20px 0 0 !important;
+    margin: 10px 0 0 !important;
     font-family: var(--font-main);
     font-size: 14px !important;
     font-weight: 700;
@@ -7604,7 +7612,7 @@ body {
     display: flex !important;
     flex-direction: column;
     align-items: flex-start;
-    margin: 20px 0 0 !important;
+    margin: 12px 0 0 !important;
     padding: 0 !important;
   }
   .footer-nav { margin: 0; padding: 0; }
@@ -7612,7 +7620,7 @@ body {
     display: flex !important;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px !important;
+    gap: 3px !important;
     margin: 0 !important;
     padding: 0 !important;
     list-style: none;
@@ -7632,7 +7640,7 @@ body {
     display: flex !important;
     align-items: center;
     gap: 8px;
-    margin: 12px 0 0 !important;
+    margin: 8px 0 0 !important;
     padding: 0 !important;
   }
   .socials--footer li { margin: 0 !important; padding: 0 !important; }
