@@ -127,6 +127,7 @@ if ( $related->have_posts() ) :
 						</a>
 						<div class="case-card__body">
 							<h3 class="case-card__title"><?php the_title(); ?></h3>
+							<p class="related-case__excerpt"><?php echo esc_html( has_excerpt() ? get_the_excerpt() : wp_trim_words( wp_strip_all_tags( get_the_content() ), 26 ) ); ?></p>
 							<div class="case-card__actions">
 								<a class="btn btn--ghost btn--sm" href="<?php the_permalink(); ?>">Подробнее о кейсе</a>
 							</div>
@@ -134,6 +135,36 @@ if ( $related->have_posts() ) :
 					</article>
 				<?php endwhile; ?>
 			</div>
+			<?php
+			$total_related_pages = (int) $related->max_num_pages;
+			if ( $total_related_pages > 1 ) :
+				$related_url = remove_query_arg( 'related_page' );
+				?>
+				<nav class="related-cases__pagination" aria-label="Страницы других кейсов">
+					<?php if ( $related_page > 1 ) : ?>
+						<a class="related-page related-page--arrow" href="<?php echo esc_url( add_query_arg( 'related_page', $related_page - 1, $related_url ) . '#related-cases' ); ?>" aria-label="Назад">‹</a>
+					<?php endif; ?>
+					<?php
+					$related_pages = array_unique( array_filter( array( 1, 2, 3, $total_related_pages ) ) );
+					$previous_page = 0;
+					foreach ( $related_pages as $page_number ) :
+						if ( $page_number > $total_related_pages ) {
+							continue;
+						}
+						if ( $previous_page && $page_number - $previous_page > 1 ) :
+							?>
+							<span class="related-page related-page--dots">···</span>
+							<?php
+						endif;
+						$previous_page = $page_number;
+						?>
+						<a class="related-page<?php echo $page_number === $related_page ? ' is-active' : ''; ?>" href="<?php echo esc_url( add_query_arg( 'related_page', $page_number, $related_url ) . '#related-cases' ); ?>" <?php echo $page_number === $related_page ? 'aria-current="page"' : ''; ?>><?php echo (int) $page_number; ?></a>
+					<?php endforeach; ?>
+					<?php if ( $related_page < $total_related_pages ) : ?>
+						<a class="related-page related-page--arrow" href="<?php echo esc_url( add_query_arg( 'related_page', $related_page + 1, $related_url ) . '#related-cases' ); ?>" aria-label="Вперёд">›</a>
+					<?php endif; ?>
+				</nav>
+			<?php endif; ?>
 		</div>
 	</section>
 	<?php
