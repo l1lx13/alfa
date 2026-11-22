@@ -8254,3 +8254,7 @@ body {
   .service-row__actions .btn--ghost { width: 135px; }
   .repost__title { font-size: 21px; }
 }
+
+@media (max-width: 620px) {
+  .share-link__vk { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; flex:none; color:#456b9b; font-family:Arial,sans-serif; font-size:20px; font-weight:900; letter-spacing:-2px; }
+}
