@@ -322,6 +322,7 @@
 
 	const shareTargets = {
 		facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + pageUrl,
+		vk: 'https://vk.com/share.php?url=' + pageUrl,
 		telegram: 'https://t.me/share/url?url=' + pageUrl + '&text=' + pageTitle,
 		whatsapp: 'https://wa.me/?text=' + pageTitle + '%20' + pageUrl,
 		viber: 'viber://forward?text=' + pageTitle + '%20' + pageUrl,
