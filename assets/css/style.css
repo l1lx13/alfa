@@ -7190,7 +7190,10 @@ body {
     font-size: 14px;
     font-weight: 700;
     line-height: 1.15;
-    color: #fff;
+    color: transparent;
+    background: linear-gradient(90deg, #5daebe 0 43%, #fff 43% 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
   }
 
   .footer-brand__line {
